@@ -13,7 +13,7 @@ export const helpHttp = () => {
       ? { ...defaultHeader, ...options.headers }
       : defaultHeader;
 
-    options.body = options.body || false;
+    options.body = JSON.stringify(options.body) || false;
 
     if (!options.body) delete options.body;
 
@@ -23,11 +23,13 @@ export const helpHttp = () => {
       res.ok
         ? res.json()
         : Promise.reject({
-            err: true,
-            status: res.status,
-            message: res.message || "Error.",
-          })
-    );
+          err: true,
+          resp: res.json(),
+          status: res.status,
+          message: res.message || "Error.",
+        })
+    )
+      .catch((err) => err);
   };
 
   const get = (url, options = {}) => {

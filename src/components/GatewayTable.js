@@ -11,6 +11,8 @@ import edit from "../img/edit.svg";
 import trash from "../img/trash.svg";
 import plus from "../img/plus.svg";
 import details from "../img/details.svg";
+import Modal from "./Modal";
+import AddForm from "./AddForm";
 
 const columns = [
   {
@@ -38,9 +40,10 @@ function createData(serialN, humanN, ip, manage) {
   return { serialN, humanN, ip, manage };
 }
 
-export default function GatewayTable({ dbGateway }) {
+export default function GatewayTable({ dbGateway, createGateway, setToUpdating, toUpdating, updateGateway, deleteGateway }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [addState, setAddState] = React.useState(false)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -50,6 +53,10 @@ export default function GatewayTable({ dbGateway }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleClickAdd = () => {
+    setAddState(true);
+  }
 
   return (
     <section className="gatewayTable">
@@ -91,8 +98,8 @@ export default function GatewayTable({ dbGateway }) {
                           </TableCell>
                         ) : (
                           <TableCell key={column.id} align={column.align}>
-                            <img src={edit} alt="" title="Edit" />
-                            <img src={trash} alt="" title="Delete" />
+                            <img src={edit} alt="" title="Edit" onClick={() => { setToUpdating(row); setAddState(true); }} setToUpdating={row} />
+                            <img src={trash} alt="" title="Delete" onClick={() => deleteGateway(row.idGateway)} />
                             <img src={details} alt="" title="Details" />
                           </TableCell>
                         );
@@ -104,7 +111,9 @@ export default function GatewayTable({ dbGateway }) {
           </Table>
         </TableContainer>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <img title="New Gateway" src={plus} alt="" />
+          <div className="addNewGat" onClick={handleClickAdd}>
+            <img title="New Gateway" src={plus} alt="" />
+          </div>
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
@@ -116,6 +125,9 @@ export default function GatewayTable({ dbGateway }) {
           />
         </div>
       </Paper>
+      <Modal addState={addState} setAddState={setAddState} toUpdating={toUpdating} setToUpdating={setToUpdating} >
+        <AddForm setAddState={setAddState} createGateway={createGateway} toUpdating={toUpdating} setToUpdating={setToUpdating} updateGateway={updateGateway} />
+      </Modal>
     </section>
   );
 }

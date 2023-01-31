@@ -46,7 +46,32 @@ main {
   height: 60vh;
 }
 
+.containerAddLoading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
 .gatewayTable img {
   margin-left: 0.5rem;
   cursor: pointer;
+}
+
+.addNewGat {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 .6rem 0 .2rem;
+  height: 2.5rem;
+  margin-top: .3rem;
+  cursor: pointer;
+}
+
+.addNewGat:hover {
+  border-radius: 50%;
+  background-color: rgb(158, 159, 161, .2);
+  transition: background-color .3s;
 }

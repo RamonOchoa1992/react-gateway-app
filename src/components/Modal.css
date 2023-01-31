@@ -1,0 +1,81 @@
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(109, 110, 110, 0.6);
+    z-index: 999;
+    display: none;
+
+}
+
+.is-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-modal {
+    position: relative;
+    width: 35rem;
+    height: 24rem;
+    background-color: rgb(255, 255, 255);
+    border: 4px solid rgb(140, 176, 252);
+    border-radius: 1rem;
+}
+
+.formContainer {
+    width: 90%;
+    margin: 2rem 5%;
+}
+
+.formContainer p {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formContainer input[type="text"] {
+    width: 70%;
+    padding: .5rem;
+}
+
+p.buttonForm {
+    justify-content: flex-end;
+}
+
+p.buttonForm input[type="submit"] {
+    padding: .5rem 1.5rem;
+    margin-right: 1rem;
+    background-color: rgb(56, 123, 216);
+    color: rgb(231, 238, 244);
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    border: 2px solid rgb(140, 176, 252);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+p.buttonForm input[type="submit"]:hover {
+    box-shadow: 2px 4px 4px 1px rgb(140, 176, 252);
+    transition: box-shadow .3s;
+}
+
+.cancel {
+    padding: .5rem 1.5rem;
+    background-color: transparent;
+    color: rgb(89, 90, 90);
+    border-color: transparent;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.cancel:hover {
+    background-color: rgb(158, 159, 161, .2);
+    transition: background-color .3s;
+}
